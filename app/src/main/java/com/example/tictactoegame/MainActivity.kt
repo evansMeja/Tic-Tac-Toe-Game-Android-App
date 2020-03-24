@@ -29,4 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
         Toast.makeText(this,"Cell Id: "+cellID,Toast.LENGTH_SHORT).show()
     }
+
+    fun testingFunc(){
+
+    }
 }
