@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             winner=2
         }
 
-        if(winner != 1){
+        if(winner != -1){
             if (winner == 1){
                 Toast.makeText(this, "Player 1 worn ",Toast.LENGTH_SHORT).show()
             }else{
