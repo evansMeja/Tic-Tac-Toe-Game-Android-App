@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             buSelected.setBackgroundColor(Color.parseColor("#009193"))
             player1.add(cellID)
             activeplayer=2
+            AutoPlay()
         }else{
             buSelected.text="O"
             buSelected.setBackgroundColor(Color.parseColor("#FF9300"))
@@ -108,10 +112,38 @@ class MainActivity : AppCompatActivity() {
 
         if(winner != -1){
             if (winner == 1){
-                Toast.makeText(this, "Player 1 worn ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You worn!",Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(this, "Player 2 worn ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Computer Worn!Worn",Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun AutoPlay(){
+        var emptyCells = ArrayList<Int>()
+        for(cellId in 1..9){
+            if(!(player1.contains(cellId) || player2.contains(cellId))){
+                emptyCells.add(cellId)
+            }
+        }
+
+        var r = Random()
+        var randomIndex= r.nextInt(emptyCells.size-0)+0
+        val cellId=emptyCells[randomIndex]
+
+        val buSelected:Button
+        when(cellId){
+            1->buSelected=bu1
+            2->buSelected=bu2
+            3->buSelected=bu3
+            4->buSelected=bu4
+            5->buSelected=bu5
+            6->buSelected=bu6
+            7->buSelected=bu7
+            8->buSelected=bu8
+            9->buSelected=bu9
+            else -> buSelected = bu1
+        }
+        playGame(cellId,buSelected)
     }
 }
