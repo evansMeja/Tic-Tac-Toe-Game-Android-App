@@ -1,20 +1,19 @@
 package com.example.tictactoegame
 
+import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_tictactoe.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity() {
-
+class TicTacToeGameActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_tictactoe)
     }
 
     fun buClick(view : View){
@@ -112,9 +111,15 @@ class MainActivity : AppCompatActivity() {
 
         if(winner != -1){
             if (winner == 1){
-                Toast.makeText(this, "You worn!",Toast.LENGTH_SHORT).show()
+                val message : String = "Congratulations! You Worn The Game"
+                val intent= Intent(this, GameOverActivity::class.java)
+                intent.putExtra("user_message",message)
+                startActivity(intent)
             }else{
-                Toast.makeText(this, "Computer Worn!Worn",Toast.LENGTH_SHORT).show()
+                val message : String = "Try Harder! You Lost to Computer"
+                val intent= Intent(this, GameOverActivity::class.java)
+                intent.putExtra("user_message",message)
+                startActivity(intent)
             }
         }
     }
@@ -131,7 +136,7 @@ class MainActivity : AppCompatActivity() {
         var randomIndex= r.nextInt(emptyCells.size-0)+0
         val cellId=emptyCells[randomIndex]
 
-        val buSelected:Button
+        val buSelected: Button
         when(cellId){
             1->buSelected=bu1
             2->buSelected=bu2
